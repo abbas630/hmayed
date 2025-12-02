@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useTransform, useScroll } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 const cards = [
@@ -45,37 +45,47 @@ const cards = [
 
 export const FandBSection = () => {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Check screen size to toggle between "Sticky Scroll" and "Native Swipe"
+  useEffect(() => {
+    const checkScreen = () => setIsDesktop(window.innerWidth >= 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
   
-  // NOTE: We allow this logic to run on Mobile now as requested.
-  // It gives a "Sticky App-Like" feel on the phone.
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"] 
   });
 
+  // Only animate 'x' on Desktop. On mobile, we keep it at 0 and let CSS handle scrolling.
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    // Height is 300vh to ensure enough scroll room for the horizontal animation
-    <section ref={targetRef} className="relative h-[300vh] bg-surface">
+    // Height: Auto on Mobile (Let it grow naturally), 300vh on Desktop (For the scroll track)
+    <section ref={targetRef} className="relative h-auto md:h-[300vh] bg-surface">
       
-      {/* Sticky Container */}
-      <div className="sticky top-0 flex h-screen flex-col md:flex-row items-center overflow-hidden py-12 md:py-0">
+      {/* Sticky Container: Only sticky on Desktop */}
+      <div className="relative md:sticky md:top-0 flex h-auto md:h-screen flex-col md:flex-row items-start md:items-center overflow-hidden py-12 md:py-0 w-full">
         
         {/* Section Marker */}
         <div className="absolute left-6 top-6 md:left-8 md:top-8 z-20 text-accent uppercase tracking-widest text-xs font-bold">
            02. The Track Record
         </div>
 
+        {/* MOBILE: overflow-x-auto (Native Swipe), x value ignored
+            DESKTOP: overflow-hidden, x value applied
+        */}
         <motion.div 
-            style={{ x }} 
-            className="flex flex-row gap-8 md:gap-16 px-6 md:px-24 w-auto h-full items-center"
+            style={{ x: isDesktop ? x : 0 }} 
+            className="flex flex-col md:flex-row gap-8 md:gap-16 px-6 md:px-24 w-full md:w-auto h-full items-start md:items-center"
         >
           
           {/* Intro Text Block */}
-          <div className="flex w-[80vw] md:w-[30vw] flex-col justify-center shrink-0">
+          <div className="flex w-full md:w-[30vw] flex-col justify-center shrink-0 pt-12 md:pt-0">
              <h2 className="text-4xl md:text-7xl font-bold text-primary leading-tight">
-                {/* UPDATED: Copy Change */}
                Offline Success, <br/> <span className="text-accent">Online Ghost.</span>
              </h2>
              <p className="mt-4 md:mt-8 text-secondary leading-relaxed max-w-md text-sm md:text-lg">
@@ -84,52 +94,58 @@ export const FandBSection = () => {
              </p>
           </div>
 
-          {/* Cards */}
-          {cards.map((card) => (
-            <div key={card.id} className="group relative h-[60vh] md:h-[70vh] w-[85vw] md:w-[45vw] shrink-0 overflow-hidden border border-white/10 bg-zinc-900 rounded-lg md:rounded-none">
-              
-              {/* Image Layer */}
-              <div className="absolute inset-0 overflow-hidden">
-                <img 
-                    src={card.img} 
-                    alt={card.client} 
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20" />
-              </div>
-
-              {/* Content Layer */}
-              <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between z-10">
-                <div className="flex justify-between items-start">
-                    <span className="px-3 py-1 border border-white/20 rounded-full text-[10px] md:text-xs uppercase tracking-widest text-white/90 backdrop-blur-md bg-black/30">
-                        {card.category}
-                    </span>
+          {/* MOBILE CONTAINER FOR CARDS:
+             - flex-row: Cards side by side
+             - overflow-x-auto: Enables native swiping
+             - snap-x: Cards snap into place
+          */}
+          <div className="flex flex-row md:contents gap-4 md:gap-0 w-full overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 no-scrollbar touch-pan-x">
+            {cards.map((card) => (
+                <div key={card.id} className="snap-center group relative h-[50vh] md:h-[70vh] w-[85vw] md:w-[45vw] shrink-0 overflow-hidden border border-white/10 bg-zinc-900 rounded-lg md:rounded-none">
+                
+                {/* Image Layer */}
+                <div className="absolute inset-0 overflow-hidden">
+                    <img 
+                        src={card.img} 
+                        alt={card.client} 
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20" />
                 </div>
 
-                <div>
-                    <div className="mb-4 md:mb-8">
-                        <AnimatedCounter 
-                            value={card.value} 
-                            prefix={card.prefix} 
-                            suffix={card.suffix} 
-                            label={card.label} 
-                        />
+                {/* Content Layer */}
+                <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between z-10">
+                    <div className="flex justify-between items-start">
+                        <span className="px-3 py-1 border border-white/20 rounded-full text-[10px] md:text-xs uppercase tracking-widest text-white/90 backdrop-blur-md bg-black/30">
+                            {card.category}
+                        </span>
                     </div>
 
-                    <div className="space-y-2 md:space-y-4 border-t border-white/20 pt-4 md:pt-6">
-                        <div>
-                            <span className="text-[10px] text-secondary uppercase tracking-wider block mb-1">Challenge</span>
-                            <p className="text-xs md:text-sm text-stone-200 leading-relaxed line-clamp-2 md:line-clamp-none">{card.problem}</p>
+                    <div>
+                        <div className="mb-4 md:mb-8">
+                            <AnimatedCounter 
+                                value={card.value} 
+                                prefix={card.prefix} 
+                                suffix={card.suffix} 
+                                label={card.label} 
+                            />
                         </div>
-                        <div>
-                            <span className="text-[10px] text-accent uppercase tracking-wider block mb-1">Strategic Fix</span>
-                            <p className="text-xs md:text-sm text-white font-medium leading-relaxed line-clamp-2 md:line-clamp-none">{card.solution}</p>
+
+                        <div className="space-y-2 md:space-y-4 border-t border-white/20 pt-4 md:pt-6">
+                            <div>
+                                <span className="text-[10px] text-secondary uppercase tracking-wider block mb-1">Challenge</span>
+                                <p className="text-xs md:text-sm text-stone-200 leading-relaxed line-clamp-2 md:line-clamp-none">{card.problem}</p>
+                            </div>
+                            <div>
+                                <span className="text-[10px] text-accent uppercase tracking-wider block mb-1">Strategic Fix</span>
+                                <p className="text-xs md:text-sm text-white font-medium leading-relaxed line-clamp-2 md:line-clamp-none">{card.solution}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-              </div>
-            </div>
-          ))}
+                </div>
+            ))}
+          </div>
           
         </motion.div>
       </div>
