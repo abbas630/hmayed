@@ -5,15 +5,15 @@ import { useRef } from "react";
 
 // The Layout Logic: We define different spans for an "Editorial" feel
 const images = [
-  { id: 1, src: "/assets/gallery-1.jpg", alt: "Signature Dish", span: "md:col-span-2 md:row-span-2" }, // Big Star
-  { id: 2, src: "/assets/gallery-2.jpg", alt: "Plating Detail", span: "md:col-span-1 md:row-span-1" },
+  { id: 1, src: "/assets/1.jpeg", alt: "Signature Dish", span: "md:col-span-2 md:row-span-2" }, // Big Star
+  { id: 2, src: "/assets/1.jpeg", alt: "Plating Detail", span: "md:col-span-1 md:row-span-1" },
   { id: 3, src: "/assets/gallery-3.jpg", alt: "Cocktail Pour", span: "md:col-span-1 md:row-span-2" }, // Tall
   { id: 4, src: "/assets/gallery-4.jpg", alt: "Interior Vibe", span: "md:col-span-1 md:row-span-1" },
-  { id: 6, src: "/assets/gallery-6.jpg", alt: "Raw Ingredients", span: "md:col-span-1 md:row-span-1" },
+  { id: 6, src: "/assets/3.1.jpeg", alt: "Cheese on top", span: "md:col-span-1 md:row-span-1" },
   { id: 7, src: "/assets/gallery-7.jpg", alt: "Dessert Macro", span: "md:col-span-1 md:row-span-1" },
   { id: 8, src: "/assets/gallery-8.jpg", alt: "Table Spread", span: "md:col-span-2 md:row-span-2" }, // Big Star
   { id: 9, src: "/assets/gallery-9.jpg", alt: "Steam/Smoke", span: "md:col-span-1 md:row-span-1" },
-  { id: 10, src: "/assets/gallery-10.jpg", alt: "Final Plate", span: "md:col-span-1 md:row-span-1" },
+  { id: 10, src: "/assets/2.1.jpeg", alt: "Final Plate", span: "md:col-span-1 md:row-span-1" },
 ];
 
 export const GallerySection = () => {
