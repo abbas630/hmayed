@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 // The Layout Logic: We define different spans for an "Editorial" feel
 const images = [
-  { id: 1, src: "/assets/1.jpeg", alt: "Signature Dish", span: "md:col-span-2 md:row-span-2" }, // Big Star
+  { id: 1, src: "/assets/4.jpeg", alt: "Signature Dish", span: "md:col-span-2 md:row-span-2" }, // Big Star
   { id: 2, src: "/assets/1.jpeg", alt: "Plating Detail", span: "md:col-span-1 md:row-span-1" },
   { id: 3, src: "/assets/gallery-3.jpg", alt: "Cocktail Pour", span: "md:col-span-1 md:row-span-2" }, // Tall
   { id: 4, src: "/assets/gallery-4.jpg", alt: "Interior Vibe", span: "md:col-span-1 md:row-span-1" },
