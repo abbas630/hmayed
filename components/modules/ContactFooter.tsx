@@ -98,7 +98,7 @@ export const ContactFooter = () => {
             <div className="flex gap-8">
                 {/* Instagram */}
                 <a 
-                    href="https://instagram.com/hmayed" 
+                    href="https://instagram.com/mhmd_hmayed" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-xs text-primary uppercase tracking-widest hover:text-accent transition-colors"
@@ -108,7 +108,7 @@ export const ContactFooter = () => {
                 
                 {/* YouTube */}
                 <a 
-                    href="https://youtube.com/@hmayed" 
+                    href="https://www.youtube.com/@mhmdhmayed" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-xs text-primary uppercase tracking-widest hover:text-accent transition-colors"
