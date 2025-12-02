@@ -86,12 +86,11 @@ export const FandBSection = () => {
           {/* Intro Text Block */}
           <div className="flex w-full md:w-[30vw] flex-col justify-center shrink-0 pt-12 md:pt-0">
              <h2 className="text-4xl md:text-7xl font-bold text-primary leading-tight">
-               Offline Success, <br/> <span className="text-accent">Online Ghost.</span>
+               Offline Success, <br/> <span className="text-accent">Online Ghost?</span>
              </h2>
              <p className="mt-4 md:mt-8 text-secondary leading-relaxed max-w-md text-sm md:text-lg">
-               We don't guess. We test. <br/>
-               From viral tea spots to high-end Italian dining, our lens is calibrated to drive specific business outcomes.
-               
+               We don't guess. We test. From viral tea spots to high-end Italian dining, our lens is calibrated to drive specific business outcomes.
+               <br/>
                Swipe to see our success stories.
              </p>
           </div>
