@@ -9,27 +9,22 @@ export const BioSection = () => {
       
       <div className="w-full max-w-7xl flex flex-col md:flex-row gap-16 md:gap-24 items-center">
         
-        {/* 1. The Portrait (Visual Weight) */}
         <div className="w-full md:w-1/2 relative">
-            {/* TODO: Replace with a real photo of Hmayed.
-               Name it: /assets/hmayed-portrait.jpg
-            */}
+            
             <div className="aspect-[3/4] w-full bg-zinc-900 relative overflow-hidden group">
-                {/* Image Placeholder */}
+
                 <div className="absolute inset-0 bg-gradient-to-tr from-zinc-800 to-zinc-900" />
                 
-                {/* If you have a photo, uncomment this:
+              
                 <img 
                     src="/assets/hmayed-portrait.jpg" 
                     alt="Hmayed" 
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                 /> 
-                */}
+                
 
-                {/* Decorative Frame */}
                 <div className="absolute inset-4 border border-white/10 z-10" />
                 
-                {/* Label */}
                 <div className="absolute bottom-8 left-8 z-20">
                     <p className="text-accent text-xs uppercase tracking-[0.3em] font-bold">
                         The Director
@@ -38,7 +33,6 @@ export const BioSection = () => {
             </div>
         </div>
 
-        {/* 2. The Narrative (Text) */}
         <div className="w-full md:w-1/2 flex flex-col justify-center">
             
             <motion.h2 
