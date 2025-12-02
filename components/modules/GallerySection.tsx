@@ -9,7 +9,6 @@ const images = [
   { id: 2, src: "/assets/gallery-2.jpg", alt: "Plating Detail", span: "md:col-span-1 md:row-span-1" },
   { id: 3, src: "/assets/gallery-3.jpg", alt: "Cocktail Pour", span: "md:col-span-1 md:row-span-2" }, // Tall
   { id: 4, src: "/assets/gallery-4.jpg", alt: "Interior Vibe", span: "md:col-span-1 md:row-span-1" },
-  { id: 5, src: "/assets/gallery-5.jpg", alt: "Chef Action", span: "md:col-span-2 md:row-span-1" }, // Wide
   { id: 6, src: "/assets/gallery-6.jpg", alt: "Raw Ingredients", span: "md:col-span-1 md:row-span-1" },
   { id: 7, src: "/assets/gallery-7.jpg", alt: "Dessert Macro", span: "md:col-span-1 md:row-span-1" },
   { id: 8, src: "/assets/gallery-8.jpg", alt: "Table Spread", span: "md:col-span-2 md:row-span-2" }, // Big Star
