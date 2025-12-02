@@ -72,7 +72,7 @@ export const FandBSection = () => {
         
         {/* Section Marker */}
         <div className="absolute left-6 top-6 md:left-8 md:top-8 z-20 text-accent uppercase tracking-widest text-xs font-bold">
-           02. The Track Record
+           02. Success Stories
         </div>
 
         {/* MOBILE: overflow-x-auto (Native Swipe), x value ignored
