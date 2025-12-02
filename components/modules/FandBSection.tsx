@@ -91,6 +91,8 @@ export const FandBSection = () => {
              <p className="mt-4 md:mt-8 text-secondary leading-relaxed max-w-md text-sm md:text-lg">
                We don't guess. We test. <br/>
                From viral tea spots to high-end Italian dining, our lens is calibrated to drive specific business outcomes.
+               
+               Swipe to see our success stories.
              </p>
           </div>
 
